@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color:blue;
+            text-align: center;
+        }
+        /* .box {
+            width: 20em; height: 6em;
+            border: solid 1px #ccc;
+            position: relative;
+            background: white;
+        }
+        .box:before, .box:after {
+            min-height: 45%; width: 65%;
+            border-radius: .2em;
+            box-shadow: 0 0 .625em rgba(204,204,204,.4);
+            position: absolute;
+            z-index: -1;
+            background: rgba(204,204,204,.4);
+            content: '';
+        }
+        .box:before {
+            bottom: 0; left: .3em;
+            transform: rotate(-5deg);
+        }
+        .box:after {
+            right: .3em; bottom: 0; 
+            transform: rotate(5deg);
+        } */
+        #addTodo {
+            color: #6c6a6a;
+        }
+        #addTodo:hover {
+            cursor: pointer;
+            color: #474646;
+            transition: 0.3s;
+        
+        }
+        #delTodo {
+            color: #6c6a6a;
+        }
+        #delTodo:hover {
+            cursor: pointer;
+            color: #474646;
+            transition: 0.3s;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <div class="box">
+        <h3>งานที่ต้องทำวันนี้</h3>
+
+        <div>
+            <div id="addTodo" onclick="showInputText()">เพิ่มงานใหม่</div>
+            <input type="text" class="hidden" id="txtTodo">
+            <button id="btnAddTodo" class="hidden" onclick="addTodo()">เพิ่ม Todo</button>
+        </div>
+        
+        <ul id="showTodo"></ul>
+    </div>
+    
+    <script>
+        function showInputText() {
+            let addTodoElement = document.getElementById("addTodo");
+            let txtTodoElement = document.getElementById("txtTodo");
+            let btnAddTodoElement = document.getElementById("btnAddTodo");
+
+            if(addTodoElement.classList.contains("hidden")) {
+                addTodoElement.classList.remove("hidden");
+                txtTodoElement.classList.add("hidden");
+                btnAddTodoElement.classList.add("hidden");
+            }
+            else {
+                addTodoElement.classList.add("hidden");
+                txtTodoElement.classList.remove("hidden");
+                btnAddTodoElement.classList.remove("hidden");
+            }
+        }
+        var i = 0;
+        function addTodo() {
+            console.log("addTodo");
+            i++;
+            const todoValue = document.getElementById("txtTodo").value;
+            const showTodo = document.getElementById("showTodo");
+            showTodo.innerHTML += `<li id="rr${i}">${todoValue} 
+                <div id="delTodo" onclick="deleteTodo()">Delete</button></li>` ;
+            showInputText();
+        }
+    </script>
+</body>
+</html>
